@@ -36,9 +36,6 @@ public class View {
         endSaleRequest();
         registerCustomerPayment(100.0);
         printReceiptRequest();
-
-
-        //Change this.
         printChangeToCustomer(contr.getFinalSaleDTO().getChange());
     }
 
