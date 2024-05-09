@@ -3,6 +3,7 @@ package se.kth.iv1350.amazingpos.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,10 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.amazingpos.integration.ArticleCatalogHandler;
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
+import se.kth.iv1350.amazingpos.integration.ArticleDTONotFoundException;
 import se.kth.iv1350.amazingpos.integration.ExternalAccountingManager;
 import se.kth.iv1350.amazingpos.integration.ReceiptPrinter;
 import se.kth.iv1350.amazingpos.model.Article;
 import se.kth.iv1350.amazingpos.model.Sale;
+import se.kth.iv1350.amazingpos.controller.*;;
 
 public class ControllerTest {
     private Controller testController;
@@ -106,5 +109,12 @@ public class ControllerTest {
         assertNotNull(controller.getFinalSaleDTO());
         assertEquals(payment, controller.getFinalSaleDTO().getPayment());
         assertEquals(payment - controller.getFinalSaleDTO().getTotalCost(), controller.getFinalSaleDTO().getChange());
+    }
+
+    @Test
+    public void testEnterInvalidArticle() {
+        assertThrows(InvalidArticleIdentifierException.class, () -> {
+            testController.enterArticle(-1, 10);
+        });
     }
 }
