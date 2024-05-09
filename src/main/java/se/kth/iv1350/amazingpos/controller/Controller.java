@@ -38,8 +38,8 @@ public class Controller {
         this.sale = new Sale();
     }
     
-    private ArticleDTO fetchArticleDTO (int identifier) {
-        return catalogHandler.fetchArticleDTO(identifier);
+    private ArticleDTO fetchArticleDTO (int identifier) throws ArticleDTONotFoundException {
+            return catalogHandler.fetchArticleDTO(identifier);
     }
 
     /**
@@ -48,9 +48,16 @@ public class Controller {
      * @param identifier
      * @param quantity
      * @return SaleStatusDTO
+     * @throws InvalidArticleIdentifierException 
      */
-    public SaleStatusDTO enterArticle (int identifier, double quantity) {
-        return this.sale.enterArticleToSale(fetchArticleDTO(identifier), quantity);
+    public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException {
+        try {
+            return this.sale.enterArticleToSale(fetchArticleDTO(identifier), quantity);
+        }
+        catch (ArticleDTONotFoundException exception) {
+            throw new InvalidArticleIdentifierException(exception.getInvalidIdentifier());
+        }
+    
     }
 
     public double getCurrentTotalSaleCost () {

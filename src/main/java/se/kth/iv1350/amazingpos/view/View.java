@@ -3,6 +3,7 @@ package se.kth.iv1350.amazingpos.view;
 import java.util.List;
 
 import se.kth.iv1350.amazingpos.controller.Controller;
+import se.kth.iv1350.amazingpos.controller.InvalidArticleIdentifierException;
 import se.kth.iv1350.amazingpos.model.FinalSaleArticleDTO;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
 
@@ -79,8 +80,8 @@ public class View {
             SaleStatusDTO saleStatus = contr.enterArticle(identifier, quantity);
             printAfterIdentifierEntered(saleStatus, quantity);
         }
-        catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+        catch (InvalidArticleIdentifierException exception) {
+            System.out.println("Identifier " + exception.getMessage() + " not valid.");
         }
 
         
