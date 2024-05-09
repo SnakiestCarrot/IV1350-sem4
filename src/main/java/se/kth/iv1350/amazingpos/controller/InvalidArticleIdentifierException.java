@@ -7,5 +7,9 @@ public class InvalidArticleIdentifierException extends Exception{
         this.invalidIdentifier = invalidIdentifier;
     }
 
+    public int getInvalidIdentifier() {
+        return this.invalidIdentifier;
+    }
+
 
 }
