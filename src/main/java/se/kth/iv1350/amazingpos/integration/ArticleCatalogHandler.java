@@ -57,7 +57,7 @@ public class ArticleCatalogHandler {
      */
     public ArticleDTO fetchArticleDTO (int identifier) {
         if (!checkValidArticle(identifier)) {
-            return null;
+            throw new IllegalArgumentException("Identifier is not valid.");
         }
         else {
             return fetchDTOFromFakeDatabase(identifier);

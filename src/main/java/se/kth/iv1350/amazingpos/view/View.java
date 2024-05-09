@@ -78,9 +78,15 @@ public class View {
     }
 
     private void enterArticleIdentifier (int identifier, double quantity) {
-        SaleStatusDTO saleStatus = contr.enterArticle(identifier, quantity);
+        try {
+            SaleStatusDTO saleStatus = contr.enterArticle(identifier, quantity);
+            printAfterIdentifierEntered(saleStatus, quantity);
+        }
+        catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
 
-        printAfterIdentifierEntered(saleStatus, quantity);
+        
     }
 
     private void endSaleRequest () {
