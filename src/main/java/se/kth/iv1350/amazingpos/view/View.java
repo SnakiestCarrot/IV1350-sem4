@@ -31,6 +31,7 @@ public class View {
      */
     public void runFakeView() {
         requestNewSale();
+        enterArticleIdentifier(1, 1);
         enterArticleIdentifier(101, 5);
         enterArticleIdentifier(101, 1);
         enterArticleIdentifier(102, 2);
@@ -81,7 +82,7 @@ public class View {
             printAfterIdentifierEntered(saleStatus, quantity);
         }
         catch (InvalidArticleIdentifierException exception) {
-            System.out.println("Identifier " + exception.getMessage() + " not valid.");
+            System.out.println("Error: Identifier " + exception.getInvalidIdentifier() + " not valid. Try again.");
         }
 
         

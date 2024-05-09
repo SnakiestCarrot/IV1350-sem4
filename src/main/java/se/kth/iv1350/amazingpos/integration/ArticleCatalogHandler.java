@@ -54,9 +54,9 @@ public class ArticleCatalogHandler {
      * 
      * @param identifier
      * @return ArticleDTO
+     * @throws ArticleDTONotFoundException 
      */
-    public ArticleDTO fetchArticleDTO (int identifier) 
-            throws ArticleDTONotFoundException {
+    public ArticleDTO fetchArticleDTO (int identifier) throws ArticleDTONotFoundException {
         if (!checkValidArticle(identifier)) {
             throw new ArticleDTONotFoundException(identifier);
         }

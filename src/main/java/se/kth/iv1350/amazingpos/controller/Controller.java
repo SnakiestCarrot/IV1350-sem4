@@ -1,6 +1,7 @@
 package se.kth.iv1350.amazingpos.controller;
 
 import se.kth.iv1350.amazingpos.integration.*;
+import se.kth.iv1350.amazingpos.model.Filelogger;
 import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.Sale;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
@@ -45,16 +46,21 @@ public class Controller {
     /**
      * Method to enter article based on identifier and quantity to the sale object.
      * Returns a SaleStatusDTO for view to display information.
-     * @param identifier
-     * @param quantity
-     * @return SaleStatusDTO
-     * @throws InvalidArticleIdentifierException 
+     * 
+     * @param identifier Article Identifier entered from view
+     * @param quantity Quantity of article
+     * @return SaleStausDTO  
+     * @throws InvalidArticleIdentifierException and writes error to log file.
      */
     public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException {
         try {
             return this.sale.enterArticleToSale(fetchArticleDTO(identifier), quantity);
         }
+        
         catch (ArticleDTONotFoundException exception) {
+            Filelogger logger = new Filelogger();
+            logger.log("ArticleDTONotFoundException: Article DTO based on identifier: " + 
+                        exception.getInvalidIdentifier() + " not found in Article Catalog.");
             throw new InvalidArticleIdentifierException(exception.getInvalidIdentifier());
         }
     
