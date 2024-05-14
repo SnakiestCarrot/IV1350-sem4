@@ -39,7 +39,7 @@ public class Controller {
         this.sale = new Sale();
     }
     
-    private ArticleDTO fetchArticleDTO (int identifier) throws ArticleDTONotFoundException {
+    private ArticleDTO fetchArticleDTO (int identifier) throws ArticleDTONotFoundException, DatabaseFailureException {
             return catalogHandler.fetchArticleDTO(identifier);
     }
 
@@ -50,9 +50,10 @@ public class Controller {
      * @param identifier Article Identifier entered from view
      * @param quantity Quantity of article
      * @return SaleStausDTO  
-     * @throws InvalidArticleIdentifierException and writes error to log file.
+     * @throws InvalidArticleIdentifierException writes error to log file.
+     * @throws DatabaseFailureException writes error to log file.
      */
-    public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException {
+    public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException, DatabaseFailureException {
         try {
             return this.sale.enterArticleToSale(fetchArticleDTO(identifier), quantity);
         }
@@ -62,8 +63,14 @@ public class Controller {
             logger.log("ArticleDTONotFoundException: Article DTO based on identifier: " + 
                         exception.getInvalidIdentifier() + " not found in Article Catalog.");
             throw new InvalidArticleIdentifierException(exception.getInvalidIdentifier());
+        }   
+
+        catch (DatabaseFailureException exception) {
+            Filelogger logger = new Filelogger();
+            logger.log("Could not connect to database.");
+            throw new DatabaseFailureException();
         }
-    
+        
     }
 
     public double getCurrentTotalSaleCost () {
