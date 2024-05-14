@@ -1,10 +1,10 @@
 package se.kth.iv1350.amazingpos.view;
 
-public interface TotalRevenue {
+public interface TotalRevenueObserver {
 
     /**
      * Prints total sale revenue.
      */
-    void printRevenue();
+    void printRevenue(double totalCost);
 
 }

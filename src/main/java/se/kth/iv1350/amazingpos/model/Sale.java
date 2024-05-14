@@ -2,8 +2,10 @@ package se.kth.iv1350.amazingpos.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
+import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 
 /**
  * Sale is responsible for storing information related to the transaction.
@@ -17,6 +19,7 @@ public class Sale {
     private double payment;
     private double change;
     private ArrayList<Article> articleList = new ArrayList<Article>();
+    private List<TotalRevenueObserver> revenueObserversList =  new ArrayList<>();
     
     /**
      * Makes a sale object.
@@ -111,11 +114,11 @@ public class Sale {
 
     /**
      * enterArticleToSale takes an ArticleDTO and a quantity to update cost and VAT for the sale.
+     * Notifies all observers with updated price.
      * @param artDTO artDTO is a DTO containing details about the article, such as name, price, vat rate, etc.
      * @param quantity quantity represents how many of each articles are to be added to the sale.
      * @return
      */
-
     public SaleStatusDTO enterArticleToSale (ArticleDTO artDTO, double quantity) {
         if (isArticleInSale(artDTO)) {
             addQuantityToArticleInList(artDTO, quantity);
@@ -125,6 +128,7 @@ public class Sale {
         }
         updateSaleTotalCost();
         updateTotalVATForSale();
+        notifyRevenueObserver(getTotalCost());
         return new SaleStatusDTO (getArticleInList(artDTO), this.totalCost, this.totalSaleVAT);
     }
 
@@ -137,4 +141,23 @@ public class Sale {
         this.payment = payment;
         this.change = payment - totalCost;
     }
+
+
+    /**
+     * Adds a revenue observers to sale class from list of observers.
+     * @param revenueObserversList
+     */
+    public void addObservers (List<TotalRevenueObserver> revenueObserversList) {
+        for (TotalRevenueObserver revenueObserver : revenueObserversList) {
+            revenueObserversList.add(revenueObserver);
+        }
+    }
+     
+    private void notifyRevenueObserver (double totalCost) {
+        for (TotalRevenueObserver revenueObserver : revenueObserversList) {
+            revenueObserver.printRevenue(totalCost);
+        }
+    }
 }
+
+    

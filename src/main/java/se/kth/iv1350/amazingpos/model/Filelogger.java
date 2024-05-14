@@ -15,10 +15,10 @@ public class Filelogger {
     /**
      * Creates instance of logger and file. Deletes old file.
      */
-    public Filelogger () {
+    public Filelogger (String filename) {
         try {
             logStream = new PrintWriter
-            (new FileWriter("log.txt"), true);
+            (new FileWriter(filename), true);
         } catch (IOException ioe) {
             System.out.println("CAN NOT LOG.");
             ioe.printStackTrace();

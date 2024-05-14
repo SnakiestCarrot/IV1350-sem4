@@ -3,6 +3,10 @@ package se.kth.iv1350.amazingpos.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
@@ -16,6 +20,7 @@ import se.kth.iv1350.amazingpos.integration.ExternalAccountingManager;
 import se.kth.iv1350.amazingpos.integration.ReceiptPrinter;
 import se.kth.iv1350.amazingpos.model.Article;
 import se.kth.iv1350.amazingpos.model.Sale;
+import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 import se.kth.iv1350.amazingpos.controller.*;;
 
 public class ControllerTest {
@@ -24,6 +29,7 @@ public class ControllerTest {
     private ExternalAccountingManager testAccMan;
     private ArticleCatalogHandler testCatHan;
     private ArticleDTO testArticleDTO;
+
 
 
     @BeforeEach

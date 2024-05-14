@@ -25,6 +25,8 @@ public class View {
      */
     public View (Controller contr) {
         this.contr = contr;
+        contr.addRevenueObserver(new TotalRevenueFileOutput());
+        contr.addRevenueObserver(new TotalRevenueView());
     }
     
     /**

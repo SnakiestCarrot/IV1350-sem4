@@ -1,10 +1,14 @@
 package se.kth.iv1350.amazingpos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import se.kth.iv1350.amazingpos.integration.*;
 import se.kth.iv1350.amazingpos.model.Filelogger;
 import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.Sale;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
+import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 
 /**
  * This is the application's controller, all method calls from view go through this class.
@@ -14,6 +18,7 @@ public class Controller {
     private ExternalAccountingManager accountingManager;
     private ArticleCatalogHandler catalogHandler;
     private Sale sale;
+    private List<TotalRevenueObserver> revenueObserversList = new ArrayList<>();
 
     /**
      * Initializes a new instance of the Controller class, setting up the necessary components for handling receipt printing,
@@ -32,11 +37,17 @@ public class Controller {
         this.catalogHandler = catalogHandler;
     }
     
+    
     /**
      * Creates instance of Sale class.
      */
     public void requestNewSale() {
         this.sale = new Sale();
+        sale.addObservers(revenueObserversList);
+    }
+
+    public void addRevenueObserver(TotalRevenueObserver revenueObserver) {
+        revenueObserversList.add(revenueObserver);
     }
     
     private ArticleDTO fetchArticleDTO (int identifier) throws ArticleDTONotFoundException, DatabaseFailureException {
