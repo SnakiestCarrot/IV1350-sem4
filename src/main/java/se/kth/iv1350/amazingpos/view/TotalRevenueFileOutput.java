@@ -2,6 +2,9 @@ package se.kth.iv1350.amazingpos.view;
 
 import se.kth.iv1350.amazingpos.model.Filelogger;
 
+/**
+ * Writes total revenue to a file.
+ */
 class TotalRevenueFileOutput implements TotalRevenueObserver {
 
     @Override
