@@ -36,8 +36,8 @@ public class ControllerTest {
     public void setUp() {
 
         testPrinter = new ReceiptPrinter();
-        testAccMan = new ExternalAccountingManager();
-        testCatHan = new ArticleCatalogHandler();
+        testAccMan = ExternalAccountingManager.getExternalAccountingManager();
+        testCatHan = ArticleCatalogHandler.getArticleCatalogHandler();
 
         testController = new Controller(testPrinter, testAccMan, testCatHan);
         testController.requestNewSale();
@@ -106,7 +106,9 @@ public class ControllerTest {
     
     @Test
     public void testRegisterPayment() {
-        Controller controller = new Controller(new ReceiptPrinter(), new ExternalAccountingManager(), new ArticleCatalogHandler());
+        Controller controller = new Controller(new ReceiptPrinter(), 
+                                               ExternalAccountingManager.getExternalAccountingManager(), 
+                                               ArticleCatalogHandler.getArticleCatalogHandler());
         controller.requestNewSale();
         double payment = 50.0;
         

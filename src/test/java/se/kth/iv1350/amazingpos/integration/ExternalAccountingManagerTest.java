@@ -11,7 +11,7 @@ public class ExternalAccountingManagerTest {
 
     @BeforeEach
     public void setUp() {
-        testAccountingManager = new ExternalAccountingManager();
+        testAccountingManager = ExternalAccountingManager.getExternalAccountingManager();
     }
 
     @AfterEach

@@ -26,7 +26,7 @@ public class ArticleCatalogHandlerTest {
 
     @BeforeEach
     public void setUp() {
-        instanceToTest = new ArticleCatalogHandler();
+        instanceToTest = ArticleCatalogHandler.getArticleCatalogHandler();
     }
     
     @AfterEach
