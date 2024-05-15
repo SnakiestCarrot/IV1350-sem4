@@ -137,7 +137,7 @@ public class View {
     }
 
     private void discountRequest() {
-        FinalSaleDTO dto = contr.requestDiscount();
-        System.out.println("new cost " + dto.getTotalCost());
+        FinalSaleDTO saleDTO = contr.requestDiscount();
+        System.out.println("new cost " + saleDTO.getTotalCost());
     }
 }

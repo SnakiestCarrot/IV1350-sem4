@@ -2,8 +2,9 @@ package se.kth.iv1350.amazingpos.integration;
 
 import java.util.ArrayList;
 
-import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
-
+/**
+ * Composite discounter that uses different ways to discount price.
+ */
 public class CompositeDiscounter implements Discounter{
     private ArrayList<Discounter> discounterList = new ArrayList<Discounter>();
 
@@ -19,6 +20,9 @@ public class CompositeDiscounter implements Discounter{
         discounterList.add(discounter);
     }
 
+    /**
+     * Constructor for the composite discounter. Adds our two discounters.
+     */
     public CompositeDiscounter () {
         this.addDiscounter(new AbsoluteDiscounter());
         this.addDiscounter(new PercentageDiscounter());

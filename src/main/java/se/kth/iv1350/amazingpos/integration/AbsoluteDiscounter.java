@@ -1,11 +1,18 @@
 package se.kth.iv1350.amazingpos.integration;
 
-import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
-
+/**
+ * Absolute discounter applies a flat discount to the total cost of sale.
+ * Hard-coded, made up rules for seminar task.
+ */
 public class AbsoluteDiscounter implements Discounter {
 
     @Override
     public double discountSale (double totalCost) {
-        return totalCost - 50;
+        if (totalCost <= 10) {
+            return totalCost - 5;
+        }
+        else {
+            return totalCost;
+        }
     }
 }
