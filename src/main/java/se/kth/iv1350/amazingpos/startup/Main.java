@@ -1,8 +1,12 @@
 package se.kth.iv1350.amazingpos.startup;
 
 import se.kth.iv1350.amazingpos.controller.Controller;
+import se.kth.iv1350.amazingpos.integration.AbsoluteDiscounter;
 import se.kth.iv1350.amazingpos.integration.ArticleCatalogHandler;
+import se.kth.iv1350.amazingpos.integration.CompositeDiscounter;
+import se.kth.iv1350.amazingpos.integration.Discounter;
 import se.kth.iv1350.amazingpos.integration.ExternalAccountingManager;
+import se.kth.iv1350.amazingpos.integration.PercentageDiscounter;
 import se.kth.iv1350.amazingpos.integration.ReceiptPrinter;
 import se.kth.iv1350.amazingpos.view.View;
 
@@ -20,6 +24,7 @@ public class Main {
         ReceiptPrinter printer = new ReceiptPrinter();
         ExternalAccountingManager accountingManager = ExternalAccountingManager.getExternalAccountingManager();
         ArticleCatalogHandler catalogHandler = ArticleCatalogHandler.getArticleCatalogHandler();
+
         
         Controller contr = new Controller(printer, accountingManager, catalogHandler);
         View view = new View(contr);

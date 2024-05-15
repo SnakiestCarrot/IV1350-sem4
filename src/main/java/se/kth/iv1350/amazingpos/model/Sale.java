@@ -31,6 +31,10 @@ public class Sale {
     private void setSaleTime() {
         this.saleTime = LocalDateTime.now();
     }
+
+    public void setTotalCost(double newCost) {
+        this.totalCost = newCost;
+    } 
     
     public double getTotalCost () {
         return this.totalCost;
@@ -54,6 +58,10 @@ public class Sale {
 
     public ArrayList<Article> getArticleList () {
         return this.articleList;
+    }
+    
+    public FinalSaleDTO createFinalSaleDTO () {
+        return new FinalSaleDTO(this);
     }
 
     private boolean isArticleInSale (ArticleDTO artDTO) {
@@ -89,6 +97,7 @@ public class Sale {
     private double calculateArticleCost (Article article) {
         return article.getPrice() * article.getQuantity();
     }
+
 
     private double calculateArticleVAT (Article article) {
         return calculateArticleCost(article) * article.getVatRate();

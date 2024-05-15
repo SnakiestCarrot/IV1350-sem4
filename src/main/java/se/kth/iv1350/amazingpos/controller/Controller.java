@@ -10,6 +10,7 @@ import se.kth.iv1350.amazingpos.model.Sale;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
 import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 
+
 /**
  * This is the application's controller, all method calls from view go through this class.
  */
@@ -17,6 +18,7 @@ public class Controller {
     private ReceiptPrinter printer;
     private ExternalAccountingManager accountingManager;
     private ArticleCatalogHandler catalogHandler;
+    private Discounter comDiscounter;
     private Sale sale;
     private ArrayList<TotalRevenueObserver> revenueObserversList = new ArrayList<TotalRevenueObserver>();
 
@@ -35,6 +37,7 @@ public class Controller {
         this.printer = printer;
         this.accountingManager = accountingManager;
         this.catalogHandler = catalogHandler;
+        this.comDiscounter = new CompositeDiscounter();
     }
     
     
@@ -102,7 +105,7 @@ public class Controller {
     }
 
     public FinalSaleDTO getFinalSaleDTO () {
-        return new FinalSaleDTO(this.sale);
+        return sale.createFinalSaleDTO();
     }
 
     /**
@@ -110,5 +113,11 @@ public class Controller {
      */
     public void printReceipt ()  {
         this.printer.printReceipt(getFinalSaleDTO());
+    }
+
+    public FinalSaleDTO requestDiscount() {
+        double newCost = comDiscounter.discountSale(sale.createFinalSaleDTO().getTotalCost());
+        this.sale.setTotalCost(newCost);
+        return sale.createFinalSaleDTO();
     }
 }

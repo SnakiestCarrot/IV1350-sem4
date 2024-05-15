@@ -8,6 +8,7 @@ import se.kth.iv1350.amazingpos.controller.InvalidArticleIdentifierException;
 import se.kth.iv1350.amazingpos.controller.OperationFailedException;
 import se.kth.iv1350.amazingpos.integration.DatabaseFailureException;
 import se.kth.iv1350.amazingpos.model.FinalSaleArticleDTO;
+import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
 
 /**
@@ -42,6 +43,7 @@ public class View {
         enterArticleIdentifier(101, 1);
         enterArticleIdentifier(102, 2);
         endSaleRequest();
+        discountRequest();
         registerCustomerPayment(100.0);
         printReceiptRequest();
         printChangeToCustomer(contr.getFinalSaleDTO().getChange());
@@ -136,4 +138,8 @@ public class View {
                     ,identifier, quantity);
     }
 
+    private void discountRequest() {
+        FinalSaleDTO dto = contr.requestDiscount();
+        System.out.println("new cost " + dto.getTotalCost());
+    }
 }

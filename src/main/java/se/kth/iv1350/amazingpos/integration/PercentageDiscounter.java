@@ -5,8 +5,8 @@ import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 public class PercentageDiscounter implements Discounter{
 
     @Override
-    public void discountSale (FinalSaleDTO finalSaleDTO, int customerIdentification) {
-
+    public double discountSale (double totalCost) {
+        return totalCost * 0.9; 
     }
 
 }
