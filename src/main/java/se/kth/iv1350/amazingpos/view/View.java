@@ -1,12 +1,10 @@
 package se.kth.iv1350.amazingpos.view;
 
 import java.util.List;
-import java.util.zip.DataFormatException;
 
 import se.kth.iv1350.amazingpos.controller.Controller;
 import se.kth.iv1350.amazingpos.controller.InvalidArticleIdentifierException;
 import se.kth.iv1350.amazingpos.controller.OperationFailedException;
-import se.kth.iv1350.amazingpos.integration.DatabaseFailureException;
 import se.kth.iv1350.amazingpos.model.FinalSaleArticleDTO;
 import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
