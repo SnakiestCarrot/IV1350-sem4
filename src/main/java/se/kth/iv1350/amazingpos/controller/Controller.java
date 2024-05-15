@@ -1,7 +1,6 @@
 package se.kth.iv1350.amazingpos.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import se.kth.iv1350.amazingpos.integration.*;
 import se.kth.iv1350.amazingpos.model.Filelogger;
@@ -49,6 +48,10 @@ public class Controller {
         sale.addObservers(revenueObserversList);
     }
 
+    /**
+     * Saves TotalRevenueObserver to the list of observers
+     * @param revenueObserver
+     */
     public void addRevenueObserver(TotalRevenueObserver revenueObserver) {
         revenueObserversList.add(revenueObserver);
     }
@@ -115,8 +118,13 @@ public class Controller {
         this.printer.printReceipt(getFinalSaleDTO());
     }
 
+    /**
+     * Method to request a discount. Fetches the current total cost, applies a discount from the discounter.
+     * Saves the new discount in the sale and returns a new FinalSaleDTO to be displayed in view.
+     * @return FinalSaleDTO to be displayed in view
+     */
     public FinalSaleDTO requestDiscount() {
-        double newCost = comDiscounter.discountSale(sale.createFinalSaleDTO().getTotalCost());
+        double newCost = comDiscounter.discountSale(this.sale.getTotalCost());
         this.sale.setTotalCost(newCost);
         return sale.createFinalSaleDTO();
     }
