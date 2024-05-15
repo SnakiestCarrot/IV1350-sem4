@@ -18,8 +18,8 @@ public class Main {
      */
     public static void main(String[] args) {
         ReceiptPrinter printer = new ReceiptPrinter();
-        ExternalAccountingManager accountingManager = new ExternalAccountingManager();
-        ArticleCatalogHandler catalogHandler = new ArticleCatalogHandler();
+        ExternalAccountingManager accountingManager = ExternalAccountingManager.getExternalAccountingManager();
+        ArticleCatalogHandler catalogHandler = ArticleCatalogHandler.getArticleCatalogHandler();
         
         Controller contr = new Controller(printer, accountingManager, catalogHandler);
         View view = new View(contr);

@@ -15,8 +15,9 @@ import se.kth.iv1350.amazingpos.model.Article;
  * Stores made up items used for seminar task represented as ArticleDTOs.
  */
 public class ArticleCatalogHandler {
-    private final int ID_OFFSET = 101;
+    private static final ArticleCatalogHandler ARTICLE_CATALOG_HANDLER = new ArticleCatalogHandler();
 
+    private final int ID_OFFSET = 101;
     private final int LOWEST_VALID_ID = 101;
     private final int HIGHEST_VALID_ID = 103;
 
@@ -27,7 +28,7 @@ public class ArticleCatalogHandler {
     private double orangeStartingInventory = 200.0;
     private double appleStartingInventory = 200.0;
 
-    public ArticleCatalogHandler () {
+    private ArticleCatalogHandler () {
         ArticleDTO bananaDTO = new ArticleDTO(101, 2.99, 0.25, "Banana", "This is a banana");
         ArticleDTO orangeDTO = new ArticleDTO(102, 1.99, 0.25, "Orange", "This is an orange");
         ArticleDTO appleDTO = new ArticleDTO(103, 0.99, 0.25, "Apple", "This is an apple");
@@ -39,6 +40,10 @@ public class ArticleCatalogHandler {
         articleDTOList.add(bananaDTO);
         articleDTOList.add(orangeDTO);
         articleDTOList.add(appleDTO);
+    }
+
+    public static ArticleCatalogHandler getArticleCatalogHandler() {
+        return ARTICLE_CATALOG_HANDLER;
     }
     
     private boolean checkValidArticle(int identifier) {

@@ -9,7 +9,13 @@ package se.kth.iv1350.amazingpos.integration;
  * and change of the transaction. 
  */
 public class ExternalAccountingManager {
+    private static final ExternalAccountingManager EXTERNAL_ACCOUNTING_MANAGER = new ExternalAccountingManager();
+
     private double funds = 9999;
+
+    private ExternalAccountingManager () {
+
+    }
 
     /**
      * Method for updating accounting system. Adds sale to attribute "funds".
@@ -23,5 +29,9 @@ public class ExternalAccountingManager {
 
     public double getFunds() {
         return this.funds;
+    }
+    
+    public static ExternalAccountingManager getExternalAccountingManager () {
+        return EXTERNAL_ACCOUNTING_MANAGER;
     }
 }
