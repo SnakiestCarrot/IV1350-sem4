@@ -1,14 +1,15 @@
 package se.kth.iv1350.amazingpos.integration;
 
 /**
- * Thrown when articleDTO is not found in article catalog handler.
+ * When an articleDTO was not found in the article catalog handler, this exception is thrown.
+ * Saves the identifier that was entered when this exception occured.
  */
 public class ArticleDTONotFoundException extends Exception{
     private int invalidIdentifier;
 
     /**
-     * Creates a new instance of exception object. Saves the identifier that was invalid.
-     * @param invalidIdentifier
+     * Creates a new instance of exception object.
+     * @param invalidIdentifier Identifier that was used.
      */
     public ArticleDTONotFoundException (int invalidIdentifier) {
         this.invalidIdentifier = invalidIdentifier;

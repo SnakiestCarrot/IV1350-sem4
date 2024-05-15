@@ -19,7 +19,7 @@ public class Sale {
     private double payment;
     private double change;
     private ArrayList<Article> articleList = new ArrayList<Article>();
-    private List<TotalRevenueObserver> revenueObserversList =  new ArrayList<>();
+    private ArrayList<TotalRevenueObserver> revenueObserversList =  new ArrayList<TotalRevenueObserver>();
     
     /**
      * Makes a sale object.
@@ -147,9 +147,9 @@ public class Sale {
      * Adds a revenue observers to sale class from list of observers.
      * @param revenueObserversList
      */
-    public void addObservers (List<TotalRevenueObserver> revenueObserversList) {
-        for (TotalRevenueObserver revenueObserver : revenueObserversList) {
-            revenueObserversList.add(revenueObserver);
+    public void addObservers (ArrayList<TotalRevenueObserver> contrObserversList) {
+        for (int i = 0; i < contrObserversList.size(); i++) {
+            this.revenueObserversList.add(contrObserversList.get(i));
         }
     }
      

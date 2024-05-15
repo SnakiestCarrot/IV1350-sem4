@@ -18,7 +18,7 @@ public class Controller {
     private ExternalAccountingManager accountingManager;
     private ArticleCatalogHandler catalogHandler;
     private Sale sale;
-    private List<TotalRevenueObserver> revenueObserversList = new ArrayList<>();
+    private ArrayList<TotalRevenueObserver> revenueObserversList = new ArrayList<TotalRevenueObserver>();
 
     /**
      * Initializes a new instance of the Controller class, setting up the necessary components for handling receipt printing,
@@ -64,22 +64,22 @@ public class Controller {
      * @throws InvalidArticleIdentifierException writes error to log file.
      * @throws DatabaseFailureException writes error to log file.
      */
-    public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException, DatabaseFailureException {
+    public SaleStatusDTO enterArticle (int identifier, double quantity) throws InvalidArticleIdentifierException, OperationFailedException {
         try {
             return this.sale.enterArticleToSale(fetchArticleDTO(identifier), quantity);
         }
         
         catch (ArticleDTONotFoundException exception) {
-            Filelogger logger = new Filelogger();
+            Filelogger logger = new Filelogger("log.txt");
             logger.log("ArticleDTONotFoundException: Article DTO based on identifier: " + 
                         exception.getInvalidIdentifier() + " not found in Article Catalog.");
             throw new InvalidArticleIdentifierException(exception.getInvalidIdentifier());
         }   
 
         catch (DatabaseFailureException exception) {
-            Filelogger logger = new Filelogger();
-            logger.log("Could not connect to database.");
-            throw new DatabaseFailureException();
+            Filelogger logger = new Filelogger("log.txt");
+            logger.log(exception.getMessage());
+            throw new OperationFailedException("Could not get article.", exception);
         }
         
     }
