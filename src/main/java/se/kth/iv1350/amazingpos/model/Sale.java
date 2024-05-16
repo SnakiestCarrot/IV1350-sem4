@@ -2,7 +2,6 @@ package se.kth.iv1350.amazingpos.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
 import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;

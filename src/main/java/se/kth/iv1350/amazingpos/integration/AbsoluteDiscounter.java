@@ -2,7 +2,7 @@ package se.kth.iv1350.amazingpos.integration;
 
 /**
  * Absolute discounter applies a flat discount to the total cost of sale.
- * Hard-coded, made up rules for seminar task.
+ * Made up rules for seminar task.
  */
 public class AbsoluteDiscounter implements Discounter {
 

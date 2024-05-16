@@ -1,7 +1,9 @@
 package se.kth.iv1350.amazingpos.integration;
 
-import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
-
+/**
+ * Percentage based discounter class.
+ * With made up discount rules for seminar.
+ */
 public class PercentageDiscounter implements Discounter{
 
     @Override
