@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +144,7 @@ public class ControllerTest {
             assertEquals("Could not get article.", e.getMessage(), "The thrown OperationFailedException did not have the expected message.");
         }
         catch (InvalidArticleIdentifierException e) {
-            assertFalse(true, "Expected OperationFailedException but InvalidArticleException was thrown.");
+            fail("Expected OperationFailedException but InvalidArticleException was thrown.");
         }
     }
 
@@ -156,7 +157,7 @@ public class ControllerTest {
             assertEquals(-1, e.getInvalidIdentifier(), "The thrown InvalidArticleIdentifierException did not have the expected invalid identifer.");
         }
         catch (OperationFailedException e) {
-            assertFalse(true, "Expected OperationFailedException but OperationFailedException was thrown.");
+            fail("Expected InvalidArticleIdentifierException but OperationFailedException was thrown");
         }
     }
 }
