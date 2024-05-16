@@ -17,7 +17,7 @@ public class FileloggerTest {
 
     @BeforeEach
     public void setUp() {
-        instanceToTest = new Filelogger("test.txt");
+        instanceToTest = new Filelogger("FileloggerTest.txt");
         
     }
 
