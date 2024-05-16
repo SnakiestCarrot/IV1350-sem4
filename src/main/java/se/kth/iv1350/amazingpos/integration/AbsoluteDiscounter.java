@@ -8,7 +8,7 @@ public class AbsoluteDiscounter implements Discounter {
 
     @Override
     public double discountSale (double totalCost) {
-        if (totalCost <= 10) {
+        if (totalCost >= 10) {
             return totalCost - 5;
         }
         else {
