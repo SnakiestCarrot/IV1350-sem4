@@ -36,7 +36,7 @@ public class Controller {
         this.printer = printer;
         this.accountingManager = accountingManager;
         this.catalogHandler = catalogHandler;
-        this.comDiscounter = new CompositeDiscounterTest();
+        this.comDiscounter = new CompositeDiscounter();
     }
     
     
