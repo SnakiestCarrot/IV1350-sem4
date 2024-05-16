@@ -1,5 +1,9 @@
 package se.kth.iv1350.amazingpos.integration;
 
+/**
+ * Percentage based discounter class.
+ * With made up discount rules for seminar.
+ */
 public class PercentageDiscounter implements Discounter{
 
     @Override
