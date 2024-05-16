@@ -1,8 +1,10 @@
 package se.kth.iv1350.amazingpos.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +125,39 @@ public class ControllerTest {
     public void testEnterInvalidArticle() {
         assertThrows(InvalidArticleIdentifierException.class, () -> {
             testController.enterArticle(-1, 10);
-        });
+        }, "expected InvalidArticleIdentifierException, but such an exception was not thrown.");
+    }
+
+    @Test
+    public void testEnterArticleOperationFailed () {
+        assertThrows(OperationFailedException.class, () -> {
+            testController.enterArticle(100, 1);
+        }, "Expected OperationFailedException, but such an exception was not thrown.");
+    }
+
+    @Test
+    public void testEnterArticleOperationFailedMsg () {
+        try {
+            testController.enterArticle(100, 1);
+        }
+        catch (OperationFailedException e) {
+            assertEquals("Could not get article.", e.getMessage(), "The thrown OperationFailedException did not have the expected message.");
+        }
+        catch (InvalidArticleIdentifierException e) {
+            fail("Expected OperationFailedException but InvalidArticleException was thrown.");
+        }
+    }
+
+    @Test
+    public void testEnterArticleInvalidIdentifierMsg () {
+        try {
+            testController.enterArticle(-1, 1);
+        }
+        catch (InvalidArticleIdentifierException e) {
+            assertEquals(-1, e.getInvalidIdentifier(), "The thrown InvalidArticleIdentifierException did not have the expected invalid identifer.");
+        }
+        catch (OperationFailedException e) {
+            fail("Expected InvalidArticleIdentifierException but OperationFailedException was thrown");
+        }
     }
 }
