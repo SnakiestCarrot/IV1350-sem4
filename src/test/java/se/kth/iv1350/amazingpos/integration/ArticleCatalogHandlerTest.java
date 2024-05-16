@@ -54,16 +54,44 @@ public class ArticleCatalogHandlerTest {
         try {
             actualOutput = instanceToTest.fetchArticleDTO(103);
         } catch (Exception e) {
-            fail();
+            fail("An exception was thrown.");
         } 
 
         assertFalse(actualOutput.equals(expectedOutput), "The two ArticleDTO objects match.");
     }
 
     @Test
-    public void testFetchArticleDTOisNotValid() {
+    public void testFetchArticleDTOisNotValidLowerLimitNegative() {
         assertThrows(ArticleDTONotFoundException.class, () -> {
             instanceToTest.fetchArticleDTO(-1);
         });
+    }
+
+    @Test
+    public void testFetchArticleDTOisNotValidLowerLimitPositive() {
+        assertThrows(ArticleDTONotFoundException.class, () -> {
+            instanceToTest.fetchArticleDTO(95);
+        });
+    }
+
+    @Test
+    public void testFetchArticleDTOisNotValidLowerLimitZero() {
+        assertThrows(ArticleDTONotFoundException.class, () -> {
+            instanceToTest.fetchArticleDTO(0);
+        });
+    }
+
+    @Test
+    public void testFetchArticleDTOisNotValidUpperLimit() {
+        assertThrows(ArticleDTONotFoundException.class, () -> {
+            instanceToTest.fetchArticleDTO(150);
+        });
+    }
+
+    @Test
+    public void testFetchArticleDTODatabaseFailure() {
+        assertThrows(DatabaseFailureException.class, () -> {
+            instanceToTest.fetchArticleDTO(100);
+        }, "Expected an exception of type DataBaseFailureException to be thrown.");
     }
 }
