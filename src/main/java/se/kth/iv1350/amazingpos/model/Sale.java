@@ -77,7 +77,6 @@ public class Sale {
         this.totalCost = newCost;
         this.discount = discount;
         updateTotalVATForSale();
-        notifyRevenueObserver(this.totalCost);
     } 
     
 
@@ -154,7 +153,6 @@ public class Sale {
         }
         updateSaleTotalCost();
         updateTotalVATForSale();
-        notifyRevenueObserver(this.totalCost);
         return new SaleStatusDTO (getArticleInList(artDTO), this.totalCost, this.totalSaleVAT);
     }
 
@@ -166,6 +164,7 @@ public class Sale {
     public void registerFinalPayment (double payment) {
         this.payment = payment;
         this.change = payment - totalCost;
+        notifyRevenueObserver(this.totalCost);
     }
 
 
