@@ -17,6 +17,7 @@ public class Sale {
     private double totalSaleVAT;
     private double payment;
     private double change;
+    private double discount;
     private ArrayList<Article> articleList = new ArrayList<Article>();
     private ArrayList<TotalRevenueObserver> revenueObserversList =  new ArrayList<TotalRevenueObserver>();
     
@@ -31,37 +32,54 @@ public class Sale {
         this.saleTime = LocalDateTime.now();
     }
 
-    public void setTotalCost(double newCost) {
-        this.totalCost = newCost;
-    } 
-    
     public double getTotalCost () {
         return this.totalCost;
     }
     
-    public LocalDateTime getSaleTime () {
+    LocalDateTime getSaleTime () {
         return this.saleTime;
     }
     
-    public double getTotalSaleVAT () {
+    double getTotalSaleVAT () {
         return this.totalSaleVAT;
     }
 
-    public double getPayment () {
+    double getPayment () {
         return this.payment;
     }
 
-    public double getChange () {
+    double getChange () {
         return this.change;
+    }
+    
+    double getDiscount () {
+        return this.discount;
     }
 
     public ArrayList<Article> getArticleList () {
         return this.articleList;
     }
     
+    /**
+     * Creates a FinalSaleDTO with copied attributes from this sale.
+     * @return FinalSaleDTO
+     */
     public FinalSaleDTO createFinalSaleDTO () {
         return new FinalSaleDTO(this);
     }
+
+    /**
+     * Updates discounted price.
+     * @param newCost the new price after discount.
+     */
+    public void updateDiscount(double newCost) {
+        double discount = this.totalCost - newCost;
+        this.totalCost = newCost;
+        this.discount = discount;
+        updateTotalVATForSale();
+        notifyRevenueObserver(this.totalCost);
+    } 
+    
 
     private boolean isArticleInSale (ArticleDTO artDTO) {
         for (int i = 0; i < articleList.size(); i++) {
@@ -136,7 +154,7 @@ public class Sale {
         }
         updateSaleTotalCost();
         updateTotalVATForSale();
-        notifyRevenueObserver(getTotalCost());
+        notifyRevenueObserver(this.totalCost);
         return new SaleStatusDTO (getArticleInList(artDTO), this.totalCost, this.totalSaleVAT);
     }
 

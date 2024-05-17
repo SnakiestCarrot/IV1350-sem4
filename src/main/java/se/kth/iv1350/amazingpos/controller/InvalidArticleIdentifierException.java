@@ -12,6 +12,7 @@ public class InvalidArticleIdentifierException extends Exception{
      * @param invalidIdentifier The identifier that was invalid.
      */
     public InvalidArticleIdentifierException(int invalidIdentifier){
+        super("An invalid article identifier was entered into the system. Identifier: " + invalidIdentifier);
         this.invalidIdentifier = invalidIdentifier;
     }
 

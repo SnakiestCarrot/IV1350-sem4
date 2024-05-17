@@ -18,6 +18,7 @@ public class FinalSaleDTO {
     private double totalSaleVAT;
     private double payment;
     private double change;
+    private double discount;
     private List<FinalSaleArticleDTO> articleList;
 
     public FinalSaleDTO (Sale sale) {
@@ -26,7 +27,7 @@ public class FinalSaleDTO {
         this.totalSaleVAT = sale.getTotalSaleVAT();
         this.payment = sale.getPayment();
         this.change = sale.getChange();
-
+        this.discount = sale.getDiscount();
         ArrayList<FinalSaleArticleDTO> mutableArticleList = new ArrayList<FinalSaleArticleDTO>();
         
         for (int i = 0; i < sale.getArticleList().size(); i++){
@@ -54,6 +55,10 @@ public class FinalSaleDTO {
 
     public double getChange () {
         return this.change;
+    }
+    
+    public double getDiscount () {
+        return this.discount;
     }
 
     public List<FinalSaleArticleDTO> getArticleList () {

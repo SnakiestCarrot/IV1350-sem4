@@ -19,14 +19,15 @@ public class View {
     
     /**
      * View constructor to make the interactions between the user interface and
-     * model possible
+     * model possible.
+     * Adds revenue observers.
      * @param contr Takes a Controller instance as argument to connect it with
      * the rest of the application
      */
     public View (Controller contr) {
         this.contr = contr;
-        contr.addRevenueObserver(new TotalRevenueFileOutput());
-        contr.addRevenueObserver(new TotalRevenueView());
+        addRevenueObserver(new TotalRevenueFileOutput());
+        addRevenueObserver(new TotalRevenueView());
     }
     
     /**
@@ -45,6 +46,14 @@ public class View {
         registerCustomerPayment(100.0);
         printReceiptRequest();
         printChangeToCustomer(contr.getFinalSaleDTO().getChange());
+    }
+
+    /**
+     * Method for adding revenue obserer to controller.
+     * @param revenueObserver observer to be added.
+     */
+    public void addRevenueObserver (TotalRevenueObserver revenueObserver) {
+        this.contr.addRevenueObserver(revenueObserver);
     }
 
     private void requestNewSale() {
@@ -137,7 +146,8 @@ public class View {
     }
 
     private void discountRequest() {
+        System.out.println("\nDiscount request!");
         FinalSaleDTO saleDTO = contr.requestDiscount();
-        System.out.println("new cost " + saleDTO.getTotalCost());
+        System.out.printf("New cost after discount is: %.2f\n" ,saleDTO.getTotalCost());
     }
 }

@@ -125,7 +125,7 @@ public class Controller {
      */
     public FinalSaleDTO requestDiscount() {
         double newCost = comDiscounter.discountSale(this.sale.getTotalCost());
-        this.sale.setTotalCost(newCost);
+        this.sale.updateDiscount(newCost);
         return sale.createFinalSaleDTO();
     }
 }

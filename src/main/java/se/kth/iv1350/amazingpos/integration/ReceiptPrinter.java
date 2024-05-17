@@ -26,9 +26,13 @@ public class ReceiptPrinter {
         }
         System.out.printf("Total: \t\t%5.2f%n", sale.getTotalCost());
         System.out.printf("VAT: \t\t%5.2f%n", sale.getTotalSaleVAT());
+        if (sale.getDiscount() != 0.0) {
+            System.out.printf("Discount:\t %5.2f\n",  sale.getDiscount());   
+        }
         System.out.println("");
         System.out.printf("Cash: \t \t%5.2f%n", sale.getPayment());
         System.out.printf("Change: \t %5.2f\n",  sale.getChange());
+
         System.out.println("------------------ End receipt ---------------------");
     }
 

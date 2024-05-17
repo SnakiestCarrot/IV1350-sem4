@@ -12,6 +12,7 @@ public class ArticleDTONotFoundException extends Exception{
      * @param invalidIdentifier Identifier that was used.
      */
     public ArticleDTONotFoundException (int invalidIdentifier) {
+        super("An articleDTO was not found in the catalog. Identifier that was used: " + invalidIdentifier);
         this.invalidIdentifier = invalidIdentifier;
     }
 
