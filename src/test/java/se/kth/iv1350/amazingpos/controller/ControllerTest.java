@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
@@ -22,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.amazingpos.integration.ArticleCatalogHandler;
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
 import se.kth.iv1350.amazingpos.integration.ArticleDTONotFoundException;
+import se.kth.iv1350.amazingpos.integration.DatabaseFailureException;
 import se.kth.iv1350.amazingpos.integration.ExternalAccountingManager;
 import se.kth.iv1350.amazingpos.integration.ReceiptPrinter;
 import se.kth.iv1350.amazingpos.model.Article;
@@ -146,6 +149,19 @@ public class ControllerTest {
         }
         catch (OperationFailedException e) {
             assertEquals("Could not get article.", e.getMessage(), "The thrown OperationFailedException did not have the expected message.");
+        }
+        catch (InvalidArticleIdentifierException e) {
+            fail("Expected OperationFailedException but InvalidArticleException was thrown.");
+        }
+    }
+
+    @Test
+    public void testEnterArticleOperationFailedCause () {
+        try {
+            testController.enterArticle(100, 1);
+        }
+        catch (OperationFailedException e) {
+            assertTrue(e.getCause() instanceof DatabaseFailureException, "The thrown OperationFailedException did not have the expected message.");
         }
         catch (InvalidArticleIdentifierException e) {
             fail("Expected OperationFailedException but InvalidArticleException was thrown.");
