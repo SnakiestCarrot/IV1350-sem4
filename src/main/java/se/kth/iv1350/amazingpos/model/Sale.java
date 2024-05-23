@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
-import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 
 /**
  * Sale is responsible for storing information related to the transaction.

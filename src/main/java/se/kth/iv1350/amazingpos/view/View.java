@@ -8,6 +8,7 @@ import se.kth.iv1350.amazingpos.controller.OperationFailedException;
 import se.kth.iv1350.amazingpos.model.FinalSaleArticleDTO;
 import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
+import se.kth.iv1350.amazingpos.model.TotalRevenueObserver;
 
 /**
  * This view is a fake representation of the real user interface view, to be able to 

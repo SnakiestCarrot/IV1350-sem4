@@ -1,5 +1,7 @@
 package se.kth.iv1350.amazingpos.view;
 
+import se.kth.iv1350.amazingpos.model.TotalRevenueObserver;
+
 class TotalRevenueView implements TotalRevenueObserver{
     private double totalRevenue;
 

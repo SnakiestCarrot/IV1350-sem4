@@ -1,4 +1,4 @@
-package se.kth.iv1350.amazingpos.view;
+package se.kth.iv1350.amazingpos.model;
 
 public interface TotalRevenueObserver {
 

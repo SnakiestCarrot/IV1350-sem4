@@ -1,6 +1,7 @@
 package se.kth.iv1350.amazingpos.view;
 
 import se.kth.iv1350.amazingpos.model.Filelogger;
+import se.kth.iv1350.amazingpos.model.TotalRevenueObserver;
 
 /**
  * Writes total revenue to a file.

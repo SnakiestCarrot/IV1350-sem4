@@ -7,7 +7,7 @@ import se.kth.iv1350.amazingpos.model.Filelogger;
 import se.kth.iv1350.amazingpos.model.FinalSaleDTO;
 import se.kth.iv1350.amazingpos.model.Sale;
 import se.kth.iv1350.amazingpos.model.SaleStatusDTO;
-import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
+import se.kth.iv1350.amazingpos.model.TotalRevenueObserver;
 
 
 /**

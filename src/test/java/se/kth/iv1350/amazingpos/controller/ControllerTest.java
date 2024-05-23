@@ -29,7 +29,7 @@ import se.kth.iv1350.amazingpos.integration.ExternalAccountingManager;
 import se.kth.iv1350.amazingpos.integration.ReceiptPrinter;
 import se.kth.iv1350.amazingpos.model.Article;
 import se.kth.iv1350.amazingpos.model.Sale;
-import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
+import se.kth.iv1350.amazingpos.model.TotalRevenueObserver;
 import se.kth.iv1350.amazingpos.controller.*;;
 
 public class ControllerTest {

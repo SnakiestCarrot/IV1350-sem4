@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import se.kth.iv1350.amazingpos.integration.ArticleDTO;
-import se.kth.iv1350.amazingpos.view.TotalRevenueObserver;
 
 public class SaleTest {
     private Sale instanceToTest;
