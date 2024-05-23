@@ -1,1 +1,1 @@
-Unable to connect to database.
+ArticleDTONotFoundException: Article DTO based on identifier: -1 not found in Article Catalog.

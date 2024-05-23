@@ -54,38 +54,38 @@ public class ArticleCatalogHandlerTest {
         try {
             actualOutput = instanceToTest.fetchArticleDTO(103);
         } catch (Exception e) {
-            fail("An exception was thrown.");
+            fail("An exception was thrown when it was not expected in the test.");
         } 
 
-        assertFalse(actualOutput.equals(expectedOutput), "The two ArticleDTO objects match.");
+        assertFalse(actualOutput.equals(expectedOutput), "The two ArticleDTO objects match when they are expected not to match.");
     }
 
     @Test
     public void testFetchArticleDTOisNotValidLowerLimitNegative() {
         assertThrows(ArticleDTONotFoundException.class, () -> {
             instanceToTest.fetchArticleDTO(-1);
-        });
+        }, "Expected and ArticleDTONotFoundException to be thrown due to the identifier being under the lower limit.");
     }
 
     @Test
     public void testFetchArticleDTOisNotValidLowerLimitPositive() {
         assertThrows(ArticleDTONotFoundException.class, () -> {
             instanceToTest.fetchArticleDTO(95);
-        });
+        }, "Expected and ArticleDTONotFoundException to be thrown due to the identifier being under the lower limit.");
     }
 
     @Test
     public void testFetchArticleDTOisNotValidLowerLimitZero() {
         assertThrows(ArticleDTONotFoundException.class, () -> {
             instanceToTest.fetchArticleDTO(0);
-        });
+        }, "Expected and ArticleDTONotFoundException to be thrown due to the identifier being under the lower limit.");
     }
 
     @Test
     public void testFetchArticleDTOisNotValidUpperLimit() {
         assertThrows(ArticleDTONotFoundException.class, () -> {
             instanceToTest.fetchArticleDTO(150);
-        });
+        }, "Expected an ArticleDTONotFoundException to be thrown due to the identifier being larger than the upper limit.");
     }
 
     @Test
