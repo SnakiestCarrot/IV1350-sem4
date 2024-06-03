@@ -1,1 +1,1 @@
-ArticleDTONotFoundException: Article DTO based on identifier: -1 not found in Article Catalog.
+ArticleDTONotFoundException: Article DTO based on identifier: 1 not found in Article Catalog.

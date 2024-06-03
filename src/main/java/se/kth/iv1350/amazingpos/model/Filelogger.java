@@ -24,12 +24,11 @@ public class Filelogger {
             ioe.printStackTrace();
         }
     }
-
     /**
      * Prints message to log file.
      * @param message The message thats printed.
      */
-    public void log (String message) {
+    public void logMessage (String message) {
         logStream.println(message);
     }
 }

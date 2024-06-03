@@ -13,7 +13,7 @@ class TotalRevenueFileOutput implements TotalRevenueObserver {
     public void printRevenue (double totalCost) {
         totalRevenue += totalCost;
         Filelogger logger = new Filelogger("revenue.txt");
-        logger.log("Total revenue: " + totalRevenue);
+        logger.logMessage("Total revenue: " + totalRevenue);
     }    
 
 }

@@ -34,7 +34,7 @@ public class FileloggerTest {
 
     @Test
     public void CreatesCorrectFileTest () {
-        instanceToTest.log("Testing.");
+        instanceToTest.logMessage("Testing.");
         try {
             fileReader = new FileReader(fileName);
         }
@@ -46,7 +46,7 @@ public class FileloggerTest {
     @Test
     public void WritesCorrectMessageTest () {
         String message = "Testing.";
-        instanceToTest.log(message);
+        instanceToTest.logMessage(message);
 
         StringBuilder builder = new StringBuilder();
         String str;
@@ -75,7 +75,7 @@ public class FileloggerTest {
     @Test
     public void WritesCorrectMessageTest2 () {
         String message = "Testing2.";
-        instanceToTest.log(message);
+        instanceToTest.logMessage(message);
 
         StringBuilder builder = new StringBuilder();
         String str;
